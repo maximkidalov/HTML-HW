@@ -1,0 +1,83 @@
+<div>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <div class="first_String flex_box"
+         onmouseenter = "moveHandler()"
+    >
+        <input
+          onchange="changeHandler(event)"     
+            >
+        Максим Кидалов</div>
+    <div class="flex_box" 
+         onmouseout = "moveHandler()"
+         style="color: darkslateblue;
+                font-size: 30px;
+                background-color: fuchsia">
+        дата рождения:01.09.2002</div>
+    <div class="third_String flex_box"
+         color = getRandomColor();
+         >
+        ОмГУ им. Ф.М.Достоевского, группа:МПБ-001-О-01</div>
+    <div class="flex_box";
+         onclick = "clickHandler()">
+        <img src="me.jpg" width="300"; height="400">
+    </div>
+    
+</div>
+
+<script>
+     
+    function clickHandler(){
+        alert("ВАУ КАКАЯ ФОТКА!")
+    }
+    function moveHandler(event){
+        console.log("event", event)
+    }
+   
+    
+    var currentColor = [255, 255, 255];
+var nextColor = getRandomColor();
+var currentStep = 0;
+var steps = 100;
+ 
+function getRandomColor() {
+  var color = [];
+  while (color.length < 3) color.push(Math.floor(Math.random() * 255));
+  return color;
+}
+ 
+document.body.onmousemove = function() {
+  currentStep++;
+  document.body.style.backgroundColor = 'rgb( ' + currentColor.map(function(e,i){
+    return Math.floor(e + (nextColor[i] - e) * currentStep / steps);
+  }).join(', ') + ')';
+  if (currentStep == steps) {
+    currentStep = 0;
+    currentColor = nextColor;
+    nextColor = getRandomColor();
+  }
+}
+</script>
+<script>
+    function changeHandler(event){
+        alert("big alert");
+        console.log("event", event);
+    }
+</script>
+<style>
+    .first_String{
+        color:black;
+        font-size: 25px;
+        background-color:red;
+        font-weight: 1000;
+        
+    }
+    .flex_box{
+        display: flex;
+        justify-content: center;   
+    }
+    .third_string{
+        color:lightblue;
+        font-style: italic;
+        font-size: 40px;
+    }
+</style>
